@@ -1,9 +1,9 @@
 ﻿{
   "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
-  "author": "",
+  "author": "Auros",
   "description": "",
-  "gameVersion": "0.12.2",
-  "id": null,
+  "gameVersion": "1.3.0",
+  "id": "SiaUtil",
   "name": "SiaUtil",
   "version": "0.0.1-alpha",
   "features": []

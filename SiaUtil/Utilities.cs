@@ -1,15 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 namespace SiaUtil
 {
     public class Utilities
     {
+        public static TextMeshProUGUI CreateText(RectTransform parent, string text, Vector2 anchoredPosition)
+        {
+            return CreateText(parent, text, anchoredPosition, new Vector2(60f, 10f));
+        }
+
+        public static TextMeshProUGUI CreateText(RectTransform parent, string text, Vector2 anchoredPosition, Vector2 sizeDelta)
+        {
+            GameObject gameObj = new GameObject("SiaUtilUIText");
+            gameObj.SetActive(false);
+
+            TextMeshProUGUI textMesh = gameObj.AddComponent<TextMeshProUGUI>();
+            textMesh.font = UnityEngine.Object.Instantiate(Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(t => t.name == "Teko-Medium SDF No Glow"));
+            textMesh.rectTransform.SetParent(parent, false);
+            textMesh.text = text;
+            textMesh.fontSize = 4;
+            textMesh.color = Color.white;
+
+            textMesh.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+            textMesh.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+            textMesh.rectTransform.sizeDelta = sizeDelta;
+            textMesh.rectTransform.anchoredPosition = anchoredPosition;
+
+            gameObj.SetActive(true);
+            return textMesh;
+        }
+
+        private static Material _noGlowMaterial = null;
+        public static Material NoGlowMaterial
+        {
+            get
+            {
+                if (!_noGlowMaterial)
+                    _noGlowMaterial = new Material(Resources.FindObjectsOfTypeAll<Material>().First(m => m.name == "UINoGlow"));
+                return _noGlowMaterial;
+            }
+        }
+
+        private static Sprite _blankSprite = null;
+        public static Sprite BlankSprite
+        {
+            get
+            {
+                if (!_blankSprite)
+                    _blankSprite = Sprite.Create(Texture2D.blackTexture, new Rect(), Vector2.zero);
+                return _blankSprite;
+            }
+        }
+
         public static Sprite LoadSpriteFromResources(string resourcePath, float PixelsPerUnit = 100.0f)
         {
             return LoadSpriteRaw(GetResource(Assembly.GetCallingAssembly(), resourcePath), PixelsPerUnit);
