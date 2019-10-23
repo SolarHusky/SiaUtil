@@ -9,6 +9,11 @@ namespace SiaUtil
 {
     public class Plugin : IBeatSaberPlugin, IDisablablePlugin
     {
+        public void OnEnable()
+        {
+            _ = RadialIcon();
+        }
+
         public void Init(IPALogger logger)
         {
             Logger.log = logger;
@@ -36,14 +41,7 @@ namespace SiaUtil
 
         public void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
         {
-            if (nextScene.name == "MenuCore")
-            {
-                var a = Resources.FindObjectsOfTypeAll<MainMenuViewController>().First();
 
-                var pa = ProgressBar.Create(new Vector2(200, 25), new Vector3(0f, 3f, 3f), false);
-                pa.Progress = .5f;
-                pa.Color = Color.red;
-            }
         }
 
         public void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
@@ -66,11 +64,6 @@ namespace SiaUtil
             }
             else
                 return _radial;
-        }
-
-        public void OnEnable()
-        {
-            _ = RadialIcon();
         }
 
         public void OnDisable()

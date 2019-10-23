@@ -73,6 +73,7 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="Visualizers\WorldSpaceMessage.cs" />
     <Compile Include="Visualizers\ProgressBar.cs" />
     <Compile Include="Visualizers\WorldSpaceImage.cs" />
     <Compile Include="Visualizers\WorldSpaceRadial.cs" />

@@ -18,7 +18,7 @@ namespace SiaUtil
             gameObj.SetActive(false);
 
             TextMeshProUGUI textMesh = gameObj.AddComponent<TextMeshProUGUI>();
-            textMesh.font = UnityEngine.Object.Instantiate(Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(t => t.name == "Teko-Medium SDF No Glow"));
+            textMesh.font = Object.Instantiate(Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(t => t.name == "Teko-Medium SDF No Glow"));
             textMesh.rectTransform.SetParent(parent, false);
             textMesh.text = text;
             textMesh.fontSize = 4;

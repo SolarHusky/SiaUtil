@@ -43,6 +43,8 @@ namespace SiaUtil.Visualizers
             get => _loadingBackg.color.a;
             set => _loadingBackg.color = new Color(0, 0, 0, value);
         }
+
+
         /// <summary>
         /// Modified and easier version of the progress bar from SongCore
         /// </summary>
