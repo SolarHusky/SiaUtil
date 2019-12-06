@@ -34,7 +34,9 @@ namespace SiaUtil.Visualizers
         private Image _radialImage;
         private GameObject _radial;
 
-        public static WorldSpaceRadial Create(RectTransform parent = null, Sprite customRadialImage = null, bool radialGlow = true, bool clockWise = true, Image.Origin360 fillOrigin = Image.Origin360.Top)
+        public GameObject refs;
+
+        public static WorldSpaceRadial Create(RectTransform parent = null, Sprite customRadialImage = null, bool radialGlow = true, bool clockWise = true, float scale = 10f, Image.Origin360 fillOrigin = Image.Origin360.Top)
         {
             Sprite spr;
 
@@ -49,7 +51,7 @@ namespace SiaUtil.Visualizers
             Canvas canvas = wsrg.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.WorldSpace;
             CanvasScaler canvasScaler = wsrg.AddComponent<CanvasScaler>();
-            canvasScaler.scaleFactor = 10.0f;
+            canvasScaler.scaleFactor = scale;
             canvasScaler.dynamicPixelsPerUnit = 10f;
             _ = wsrg.AddComponent<GraphicRaycaster>();
             wsrg.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 1f);
@@ -68,7 +70,7 @@ namespace SiaUtil.Visualizers
             wsg.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
             wsg._text.text = "";
 
-            wsg._radial = new GameObject();
+            wsg._radial = new GameObject("Radial");
             wsg._radialImage = wsg._radial.AddComponent<Image>();
             wsg._radial.transform.SetParent(wsg._text.transform);
             wsg._radial.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 2f);
@@ -96,6 +98,7 @@ namespace SiaUtil.Visualizers
                 wsrg.transform.parent = parent;
                 wsg.transform.localPosition = Vector2.zero;
             }
+            
             return wsg;
         }
 

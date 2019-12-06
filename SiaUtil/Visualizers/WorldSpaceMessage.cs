@@ -10,8 +10,7 @@ namespace SiaUtil.Visualizers
 {
     public class WorldSpaceMessage : MonoBehaviour
     {
-        Canvas _canvas;
-        public TextMeshProUGUI _messagePrompt;
+        public TextMeshPro _messagePrompt;
 
         public float Font
         {
@@ -33,24 +32,15 @@ namespace SiaUtil.Visualizers
 
         public static WorldSpaceMessage Create(string text, Vector3 position, float fontSize = 10f)
         {
-            var wsmgo = new GameObject("SiaUtilWorldSpaceMessage");
-            var wsm = wsmgo.AddComponent<WorldSpaceMessage>();
-            wsmgo.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
-            wsm._canvas = wsmgo.AddComponent<Canvas>();
-            wsm._canvas.renderMode = RenderMode.WorldSpace;
-            wsm._canvas.enabled = false;
-            var rectTransform = wsm._canvas.transform as RectTransform;
-            rectTransform.sizeDelta = new Vector2(100, 50);
+            //var wsmgo = new GameObject("SiaUtilWorldSpaceMessage");
+            //var wsm = wsmgo.AddComponent<WorldSpaceMessage>();
+            //wsmgo.transform.position = position;
+            //wsm._messagePrompt = 
+                Utilities.CreateWorldText(null, text);
+            //wsm._messagePrompt.fontSize = fontSize;
 
-            wsm._messagePrompt = Utilities.CreateText(rectTransform, text, new Vector2(0, 10));
-            rectTransform = wsm._messagePrompt.transform as RectTransform;
-            rectTransform.SetParent(wsm._canvas.transform, false);
-            rectTransform.sizeDelta = new Vector2(100, 20);
-            wsm._messagePrompt.fontSize = fontSize;
-            wsm._canvas.enabled = true;
-
-            wsmgo.transform.position = position;
-            return wsm;
+            //wsm._messagePrompt.material.shader = Utilities.Extensions.CustomTextShader;
+            return null;
         }
     }
 }

@@ -17,6 +17,15 @@ namespace SiaUtil.Visualizers
         private static readonly Vector2 CanvasSize = new Vector2(100, 50);
         private static readonly Color BackgroundColor = new Color(0, 0, 0, 0.2f);
 
+        public void DestroyPB()
+        {
+            Progress = 0;
+            BackgroundOpacity = 0;
+
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+
         public float Progress
         {
             get

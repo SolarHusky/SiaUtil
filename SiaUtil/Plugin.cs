@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using IPALogger = IPA.Logging.Logger;
 using SiaUtil.Visualizers;
 using System.Linq;
+using SiaUtil.widePeepoHappy;
 
 namespace SiaUtil
 {
@@ -41,7 +42,10 @@ namespace SiaUtil
 
         public void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
         {
-
+            if (nextScene.name == "MenuCore")
+                PersistentSingleton<MenuColorChanger>.instance.CanBeModified = true;
+            else
+                PersistentSingleton<MenuColorChanger>.instance.CanBeModified = false;
         }
 
         public void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
