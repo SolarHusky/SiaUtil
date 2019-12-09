@@ -31,6 +31,7 @@ namespace SiaUtil
 
         public class LoadScripts
         {
+            static public Dictionary<string, Texture2D> _cachedTextures = new Dictionary<string, Texture2D>();
             public static IEnumerator LoadTextureCoroutine(string spritePath, Action<Texture2D> done)
             {
                 Texture2D tex;
@@ -38,6 +39,12 @@ namespace SiaUtil
 
                 using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(spritePath))
                 {
+                    if (_cachedTextures.ContainsKey(spritePath))
+                    {
+                        done?.Invoke(_cachedTextures[spritePath]);
+                        yield break;
+                    }
+
                     yield return www.SendWebRequest();
                     if (www.isHttpError || www.isNetworkError)
                     {
@@ -47,7 +54,8 @@ namespace SiaUtil
                     {
                         tex = DownloadHandlerTexture.GetContent(www);
                         tex.wrapMode = TextureWrapMode.Clamp;
-                        yield return new WaitForSeconds(.05f);
+                        _cachedTextures.Add(spritePath, tex);
+                        yield return new WaitForSeconds(.01f);
                         done?.Invoke(tex);
                     }
                 }
@@ -84,7 +92,7 @@ namespace SiaUtil
             return textMesh;
         }
 
-        public static TextMeshPro CreateWorldText(Transform parent, string text = "TEXT")
+        public static TextMeshPro CreateWorldText(Transform parent, string text = "TEXT", float size = 10f)
         {
             GameObject textMeshGO = new GameObject("SiaUtilText");
 
@@ -98,7 +106,7 @@ namespace SiaUtil
 
             textMesh.transform.SetParent(parent, true);
             textMesh.text = text;
-            textMesh.fontSize = 5f;
+            textMesh.fontSize = size;
             textMesh.color = Color.white;
             textMesh.renderer.material.shader = Extensions.CustomTextShader;
 

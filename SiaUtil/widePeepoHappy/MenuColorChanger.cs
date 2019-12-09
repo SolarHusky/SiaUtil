@@ -10,18 +10,32 @@ namespace SiaUtil.widePeepoHappy
 {
     public class MenuColorChanger : PersistentSingleton<MenuColorChanger>
     {
+        /*private static MenuColorChanger _instance;
+        public static MenuColorChanger Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new GameObject("SU:MCC").AddComponent<MenuColorChanger>();
+                    DontDestroyOnLoad(_instance.gameObject);
+                }
+                return _instance;
+            }
+        }*/
+
         public bool CanBeModified { get; internal set; } = false;
 
         public void SetColor(Color color)
         {
             if (CanBeModified)
-            {
                 UpdateLights(color);
-            }
+            
         }
         public void SetColorOvertime(Color color, float time)
         {
-            StartCoroutine(ChangeColor(MenuLightsSO().CurrentColorForID(0), color, time));
+            if (CanBeModified)
+                StartCoroutine(ChangeColor(MenuLightsSO().CurrentColorForID(0), color, time));
         }
 
         private IEnumerator ChangeColor(Color oldColor, Color newColor, float time)
@@ -37,7 +51,8 @@ namespace SiaUtil.widePeepoHappy
 
         public void RevertColors()
         {
-            MenuLightsSO().SetColorsFromPreset(defaultPreset);
+            if (CanBeModified)
+                MenuLightsSO().SetColorsFromPreset(defaultPreset);
         }
 
         private MenuLightsPresetSO defaultPreset;

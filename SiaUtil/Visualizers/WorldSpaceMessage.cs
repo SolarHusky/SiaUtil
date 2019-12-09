@@ -36,7 +36,7 @@ namespace SiaUtil.Visualizers
             //var wsm = wsmgo.AddComponent<WorldSpaceMessage>();
             //wsmgo.transform.position = position;
             //wsm._messagePrompt = 
-                Utilities.CreateWorldText(null, text);
+                Utilities.CreateWorldText(null, text, fontSize);
             //wsm._messagePrompt.fontSize = fontSize;
 
             //wsm._messagePrompt.material.shader = Utilities.Extensions.CustomTextShader;
