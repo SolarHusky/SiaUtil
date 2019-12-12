@@ -48,7 +48,7 @@ namespace SiaUtil
                     yield return www.SendWebRequest();
                     if (www.isHttpError || www.isNetworkError)
                     {
-                        Logger.log.Error("Connection Error!");
+                        Logger.log.Error("Connection Error: " + spritePath);
                     }
                     else
                     {
@@ -59,8 +59,6 @@ namespace SiaUtil
                         done?.Invoke(tex);
                     }
                 }
-                
-                
             }
         }
 

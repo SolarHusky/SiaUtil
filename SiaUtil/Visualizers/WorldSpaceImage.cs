@@ -39,14 +39,14 @@ namespace SiaUtil.Visualizers
             rectTransform.sizeDelta = new Vector2(100, 50);
 
             wsi._panel = new GameObject("Image").AddComponent<Image>();
-            wsi._panel.material = new Material(CustomUI.Utilities.UIUtilities.NoGlowMaterial);
+            wsi._panel.material = new Material(Utilities.NoGlowMaterial);
             wsi._panel.rectTransform.SetParent(wsi._imageCanvas.transform, false);
             wsi._panel.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
             wsi._panel.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
             wsi._panel.rectTransform.anchoredPosition = new Vector2(4.5f, 4.5f);
             wsi._panel.rectTransform.sizeDelta = new Vector2(15f, 15f);
             wsi._panel.rectTransform.position = new Vector3(0f, 0f, 0f);
-            wsi._panel.sprite = CustomUI.Utilities.UIUtilities.BlankSprite;
+            wsi._panel.sprite = Utilities.BlankSprite;
 
             wsi._panel.material.color = new Color(1, 1, 1, 1);
             wsi._panel.material.renderQueue = 4000;
@@ -62,12 +62,11 @@ namespace SiaUtil.Visualizers
 
         public void DisableWorldSpaceImage()
         {
-            _panel.sprite = CustomUI.Utilities.UIUtilities.BlankSprite;
+            _panel.sprite = Utilities.BlankSprite;
         }
 
         public void DestroyImager()
         {
-
             Destroy(_panel);
             Destroy(_imageCanvas);
             Destroy(this);

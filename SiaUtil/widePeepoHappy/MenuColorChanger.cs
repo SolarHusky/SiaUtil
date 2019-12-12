@@ -34,8 +34,10 @@ namespace SiaUtil.widePeepoHappy
         }
         public void SetColorOvertime(Color color, float time)
         {
+            
             if (CanBeModified)
                 StartCoroutine(ChangeColor(MenuLightsSO().CurrentColorForID(0), color, time));
+            
         }
 
         private IEnumerator ChangeColor(Color oldColor, Color newColor, float time)
@@ -44,6 +46,7 @@ namespace SiaUtil.widePeepoHappy
             while (toAdd <= 1)
             {
                 SetColor(Color.Lerp(oldColor, newColor, toAdd));
+                
                 toAdd += .01f / time;
                 yield return new WaitForSeconds(.01f);
             }

@@ -42,10 +42,10 @@ namespace SiaUtil
 
         public void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
         {
-            if (nextScene.name == "MenuCore")
-                PersistentSingleton<MenuColorChanger>.instance.CanBeModified = true;
+            if (nextScene.name == "MenuViewControllers")
+                MenuColorChanger.instance.CanBeModified = true;
             else
-                PersistentSingleton<MenuColorChanger>.instance.CanBeModified = false;
+                MenuColorChanger.instance.CanBeModified = false;
         }
 
         public void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
