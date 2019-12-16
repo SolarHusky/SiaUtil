@@ -1,8 +1,8 @@
 ﻿{
   "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
   "author": "Auros",
-  "description": "",
-  "gameVersion": "1.4.2",
+  "description": "Various Utilities that mods can use.",
+  "gameVersion": "1.6.0",
   "id": "SiaUtil",
   "name": "SiaUtil",
   "version": "1.0.0",

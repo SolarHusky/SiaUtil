@@ -5,6 +5,8 @@ using IPALogger = IPA.Logging.Logger;
 using SiaUtil.Visualizers;
 using System.Linq;
 using SiaUtil.widePeepoHappy;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace SiaUtil
 {
@@ -50,7 +52,18 @@ namespace SiaUtil
 
         public void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
         {
-            
+            if (scene.name == "MenuViewControllers")
+            {
+                //SharedCoroutineStarter.instance.StartCoroutine(Wait());
+            }
+        }
+
+        IEnumerator Wait()
+        {
+            yield return new WaitForSeconds(3f);
+            var vis = WorldSpaceMessage.Create("test", new Vector3(0f, 3f, 1f), 7f);
+            yield return new WaitForSeconds(3f);
+            vis.Color = Color.red;
         }
 
         public void OnSceneUnloaded(Scene scene)

@@ -32,15 +32,13 @@ namespace SiaUtil.Visualizers
 
         public static WorldSpaceMessage Create(string text, Vector3 position, float fontSize = 10f)
         {
-            //var wsmgo = new GameObject("SiaUtilWorldSpaceMessage");
-            //var wsm = wsmgo.AddComponent<WorldSpaceMessage>();
-            //wsmgo.transform.position = position;
-            //wsm._messagePrompt = 
-                Utilities.CreateWorldText(null, text, fontSize);
-            //wsm._messagePrompt.fontSize = fontSize;
+            var wsmgo = new GameObject("SiaUtilWorldSpaceMessage");
+            var wsm = wsmgo.AddComponent<WorldSpaceMessage>();
+            wsmgo.transform.position = position;
+            wsm._messagePrompt = Utilities.Extensions.CreateWorldText(wsmgo.transform, text);
+            wsm._messagePrompt.fontSize = fontSize;
 
-            //wsm._messagePrompt.material.shader = Utilities.Extensions.CustomTextShader;
-            return null;
+            return wsm;
         }
     }
 }

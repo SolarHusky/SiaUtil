@@ -79,8 +79,15 @@ namespace SiaUtil.Visualizers
             wsg._radial.transform.localPosition = Vector3.zero;
 
             wsg._radialImage.sprite = spr;
+            
             if (radialGlow == false)
-                wsg._radialImage.material = new Material(Utilities.NoGlowMaterial);
+            {
+                wsg._radialImage.material = new Material(Utilities.NoGlowMaterial)
+                {
+                    shader = Utilities.Extensions.CustomTextShader
+                };
+            }
+                
             wsg._radialImage.type = Image.Type.Filled;
             wsg._radialImage.fillMethod = Image.FillMethod.Radial360;
             wsg._radialImage.fillOrigin = (int)fillOrigin;

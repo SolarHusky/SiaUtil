@@ -27,6 +27,29 @@ namespace SiaUtil
                     return _customTextShader;
                 }
             }
+
+            public static TextMeshPro CreateWorldText(Transform parent, string text = "TEXT")
+            {
+                GameObject textMeshGO = new GameObject("SiaUtilWSText");
+
+                textMeshGO.SetActive(false);
+
+                TextMeshPro textMesh = textMeshGO.AddComponent<TextMeshPro>();
+                TMP_FontAsset font = UnityEngine.Object.Instantiate(Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(x => x.name == "Teko-Medium SDF No Glow"));
+                textMesh.renderer.sharedMaterial = font.material;
+                textMesh.fontSharedMaterial = font.material;
+                textMesh.font = font;
+
+                textMesh.transform.SetParent(parent, false);
+                textMesh.text = text;
+                textMesh.fontSize = 5f;
+                textMesh.color = Color.white;
+                textMesh.renderer.material.shader = CustomTextShader;
+                textMesh.rectTransform.sizeDelta = new Vector2(0f, 0f);
+                textMesh.gameObject.SetActive(true);
+                textMesh.alignment = TextAlignmentOptions.Center;
+                return textMesh;
+            }
         }
 
         public class LoadScripts
@@ -87,29 +110,6 @@ namespace SiaUtil
             textMesh.material.shader = Extensions.CustomTextShader;
 
             gameObj.SetActive(true);
-            return textMesh;
-        }
-
-        public static TextMeshPro CreateWorldText(Transform parent, string text = "TEXT", float size = 10f)
-        {
-            GameObject textMeshGO = new GameObject("SiaUtilText");
-
-            textMeshGO.SetActive(false);
-
-            TextMeshPro textMesh = textMeshGO.AddComponent<TextMeshPro>();
-            TMP_FontAsset font = UnityEngine.Object.Instantiate(Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(x => x.name == "Teko-Medium SDF No Glow"));
-            textMesh.renderer.sharedMaterial = font.material;
-            textMesh.fontSharedMaterial = font.material;
-            textMesh.font = font;
-
-            textMesh.transform.SetParent(parent, true);
-            textMesh.text = text;
-            textMesh.fontSize = size;
-            textMesh.color = Color.white;
-            textMesh.renderer.material.shader = Extensions.CustomTextShader;
-
-            textMesh.gameObject.SetActive(true);
-
             return textMesh;
         }
 
